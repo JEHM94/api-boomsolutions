@@ -9,6 +9,21 @@
 _Servicio de API para el Registro de Productos con NestJS y TypeORM._
 # :page_facing_up:Guía de Instalación
 
+> [!IMPORTANT]
+>### :small_blue_diamond:Para sistemas operativos Linux y MacOS
+>- Si el entorno de trabajo es Linux o MacOS debe hacer el siguiente cambio en el archivo ```package.json``` (estos cambios no aplican para Windows)
+>
+>En la sección de ``` "scripts" ``` sustituir las lineas:
+>```
+>"start:dev": "cross-env NODE_ENV=development nest start --watch",
+>"start:prod": "cross-env NODE_ENV=production node dist/main"
+>```
+>por
+>```
+>"start:dev" : "NODE_ENV=development nest start --watch",
+>"start:prod": "NODE_ENV=production node dist/main"
+>```
+
 ### :small_blue_diamond: Instalación de dependencias
 
 - Instalar las dependencias con algún gestor de paquetes como npm, yarm o pnpm
