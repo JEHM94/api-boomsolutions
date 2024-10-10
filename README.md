@@ -5,81 +5,128 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Rest API
+_Servicio de API para el Registro de Productos con NestJS y TypeORM._
+# :page_facing_up:Guía de Instalación
 
-## Description
+### :small_blue_diamond: Instalación de dependencias
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
+- Instalar las dependencias con algún gestor de paquetes como npm, yarm o pnpm
 ```bash
 $ yarn install
 ```
 
-## Compile and run the project
+### :small_blue_diamond:Crea una base de datos
+- Crear una base de datos mediante el uso de cualquier herramienta de administración de bases de datos, como MySQL Workbench, phpMyAdmin, Tableplus, etc.
+- Renombar el archivo ```.env.development.example``` a ```.env.development```
+- Configurar los ajustes de conexión de la base de datos en el archivo ```.env.development```de la aplicación. Por ejemplo:
 
+  ```
+  DB_HOST=localhost
+  DB_TYPE=mysql
+  DB_PORT=3306
+  DB_USERNAME=root
+  DB_PASSWORD=root
+  DB_NAME=my_db
+    ```
+
+### :small_blue_diamond:Compila y ejecuta el proyecto
 ```bash
-# development
-$ yarn run start
-
-# watch mode
 $ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
 ```
 
-## Run tests
+# Documentación
+> [!IMPORTANT]
+> - Puede ver más detalles sobre la documentación y probar los distintos endpoints a través del siguiente endpoint de la aplicación
+>```
+>http://localhost:3000/api/docs/
+>```
 
-```bash
-# unit tests
-$ yarn run test
+## Métodos
 
-# e2e tests
-$ yarn run test:e2e
+| Método | Descripción |
+|---|---|
+| :green_circle:GET | Obtiene un recurso |
+| :large_blue_circle:POST | Crea un recurso |
+| :large_blue_circle:PATCH | Actualiza un recurso |
+| :red_circle:DELETE | Elimina un recurso |
 
-# test coverage
-$ yarn run test:cov
+
+# Rutas
+> [!IMPORTANT]
+> - Las rutas con autenticación de tipo "Auth" requieren de un Bearer Token que debe ser ingresado por medio de los headers de la solicitud.
+> - El body de la solicitud debe contener los parámetros de entrada requeridos por la ruta.
+
+## :diamond_shape_with_a_dot_inside:Auth
+| Ruta | Método | Descripción | Autenticación |
+|---|---|---|---|
+| /api/v1/auth/register | :large_blue_circle:POST | Registra un nuevo usuario | Guest |
+| /api/v1/auth/login | :large_blue_circle:POST | Autentica un usuario | Guest |
+
+#### :small_blue_diamond:Parámetros de entrada
+
+| Ruta | Método | Parámetro | Descripción |
+|---|---|---|---|
+| /api/v1/auth/register| :large_blue_circle:POST | name | Nombre del usuario |
+||| email | Correo electrónico |
+||| password | Contraseña del usuario |
+||| role | Rol del usuario (opcional) |
+
+
+| Ruta | Método | Parámetro | Descripción |
+|---|---|---|---|
+| /api/v1/auth/login| :large_blue_circle:POST | email | Correo electrónico |
+||| password | Contraseña |
+
+## :diamond_shape_with_a_dot_inside:Product
+| Ruta | Método | Descripción | Autenticación |
+|---|---|---|---|
+| /api/v1/product | :green_circle:GET | Muestra todos los productos | Auth |
+| /api/v1/product | :large_blue_circle:POST | Registra un nuevo producto | Auth |
+| /api/v1/product/{id} | :green_circle:GET | Busca un producto por su ID | Auth |
+| /api/v1/product/{id} | :large_blue_circle:PATCH | Actualiza un producto por su ID | Auth |
+| /api/v1/product/{id} | :red_circle:DELETE | Elimina un producto por su ID | Auth |
+
+
+#### :small_blue_diamond:Parámetros de entrada
+
+| Ruta | Método | Parámetro | Descripción |
+|---|---|---|---|
+| /api/v1/product | :green_circle:GET | Bearer Token | Token de autenticación generado en la ruta de Login |
+
+| Ruta | Método | Parámetro | Descripción |
+|---|---|---|---|
+| /api/v1/product| :large_blue_circle:POST | Bearer Token | Token de autenticación generado en la ruta de Login |
+||| name | Nombre del producto |
+||| description | Descripción del producto |
+||| price | Precio del producto |
+||| stock | Cantidad de productos disponibles |
+
+| Ruta | Método | Parámetro | Descripción |
+|---|---|---|---|
+| /api/v1/product/{id}| :green_circle:GET / :red_circle:DELETE | Bearer Token | Token de autenticación generado en la ruta de Login |
+||| {id} | ID del producto |
+
+
+| Ruta | Método | Parámetro | Descripción |
+|---|---|---|---|
+| /api/v1/product/{id}| :large_blue_circle:PATCH | Bearer Token | Token de autenticación generado en la ruta de Login |
+||| name | Nombre del producto (opcional) |
+||| description | Descripción del producto (opcional) |
+||| price | Precio del producto (opcional) |
+||| stock | Cantidad de productos disponibles (opcional) |
+
+# Ejemplo
+- Para registrar un nuevo producto debemos enviar una solicitud de método ``` POST ``` a la ruta ``` /api/v1/product ``` y construimos la consulta con los parámetros de entrada requeridos por el servicio de la siguiente manera
 ```
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+headers: {
+    Authorization: `Bearer PU100RI9gv9179uId0QFkmkU5TVMdsUq0KK1S3yX7c1e4bd1`,
+},
+body:{
+    "name": "Camisa",
+    "description": "Nuevos modelos",
+    "price": 9.99,
+    "stock": 10
+}
+```
+donde ```headers``` contiene la información del token de autenticación el cuál lo provee el servicio de autenticación de usuarios a través de la ruta ``` /api/v1/auth/login ```; y ``` body ``` contiene los parámetros requerios por el servicio para ingresar la información a la base de datos.
