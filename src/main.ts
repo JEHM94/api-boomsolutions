@@ -23,7 +23,7 @@ async function bootstrap() {
   // Documentación API
   const config = new DocumentBuilder()
     .setTitle('Products API')
-    .setDescription('Rest API para Productos con Autenticación')
+    .setDescription('Rest API para Productos, con Autenticación.')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
