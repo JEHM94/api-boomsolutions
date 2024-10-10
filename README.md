@@ -111,12 +111,13 @@ $ yarn run start:dev
 | Ruta | Método | Parámetro | Descripción |
 |---|---|---|---|
 | /api/v1/product/{id}| :large_blue_circle:PATCH | Bearer Token | Token de autenticación generado en la ruta de Login |
+||| {id} | ID del producto |
 ||| name | Nombre del producto (opcional) |
 ||| description | Descripción del producto (opcional) |
 ||| price | Precio del producto (opcional) |
 ||| stock | Cantidad de productos disponibles (opcional) |
 
-# Ejemplo
+# Ejemplo de uso
 - Para registrar un nuevo producto debemos enviar una solicitud de método ``` POST ``` a la ruta ``` /api/v1/product ``` y construimos la consulta con los parámetros de entrada requeridos por el servicio de la siguiente manera
 ```
 headers: {
