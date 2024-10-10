@@ -23,9 +23,8 @@ async function bootstrap() {
   // Documentación API
   const config = new DocumentBuilder()
     .setTitle('Products API')
-    .setDescription('CRUD para Productos')
+    .setDescription('Rest API para Productos con Autenticación')
     .setVersion('1.0')
-    .addTag('product')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);

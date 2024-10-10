@@ -21,12 +21,6 @@ dotenv.config({ path: process.cwd() + '/.env.development' });
       autoLoadEntities: true,
       synchronize: true, // Colocar false para producción
     }),
-    //Variables de entorno
-    ConfigModule.forRoot({
-      isGlobal: true,
-      // Hace que las variables estén disponibles en toda la aplicación
-      envFilePath: '.env',
-    }),
     // App Modules
     ProductModule,
     UsersModule,
