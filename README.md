@@ -57,6 +57,11 @@ $ yarn run start:dev
 > - Las rutas con autenticación de tipo "Auth" requieren de un Bearer Token que debe ser ingresado por medio de los headers de la solicitud.
 > - El body de la solicitud debe contener los parámetros de entrada requeridos por la ruta.
 
+## :diamond_shape_with_a_dot_inside:Docs
+| Ruta | Método | Descripción | Autenticación |
+|---|---|---|---|
+| /api/docs | :green_circle:GET | Documentación de la API | Guest |
+
 ## :diamond_shape_with_a_dot_inside:Auth
 | Ruta | Método | Descripción | Autenticación |
 |---|---|---|---|
